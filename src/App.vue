@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>ome | Store</p>
+                        <p>Home | Store</p>
                     </div>
                 </div>
             </div>
