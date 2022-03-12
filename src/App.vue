@@ -100,6 +100,10 @@ export default {
                 this.cartItems.splice(index, 1);
             }
 
+            if(this.cartItems.length == 0){
+              this.showProduct = true;
+            }
+
             console.log(this.cartItems);
 
 
