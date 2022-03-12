@@ -47,7 +47,7 @@
                         <div class="col-md-12 check-out-1" >
                             <div class="row">
                                 <div class="col-md-6 subject-box">
-                                    <P>Subject: {{ cartItem.lesson.topic }}<br> Location: {{ cartItem.lesson.location }}<br> Price: <span>&#163;{{ cartItem.lesson.price }}</span><br>  Icon: <span v-bind:class="cartItem.lesson.icon"></span> <br>  Quantity: <span > {{cartItem.space}}</span></P>
+                                    <p>Subject: {{ cartItem.lesson.topic }}<br> Location: {{ cartItem.lesson.location }}<br> Price: <span>&#163;{{ cartItem.lesson.price }}</span><br>  Icon: <span v-bind:class="cartItem.lesson.icon"></span> <br>  Quantity: <span > {{cartItem.space}}</span></p>
                                 </div>
                                 <div class="col-md-6">
                                     <img v-bind:src="`https://cst3145-cw2-backend.herokuapp.com/${cartItem.lesson.image}`" alt=""
