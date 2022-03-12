@@ -37,7 +37,7 @@
         </section>
 
         <section v-else id="check-out">
-            <Checkout :cartItems="cartItems" v-on:removeLesson="removeLessonFromCart"></Checkout>
+            <Checkout :cartItems="cartItems" v-on:removeLesson="removeLessonFromCart" v-on:checkOut="checkOut"></Checkout>
             
         </section>
   </div>
@@ -123,6 +123,43 @@ export default {
                         console.log(this.lessons);
                     });
             })
+        },
+        checkOut: function (checkOutName, checkOutNumber) {
+            fetch('https://cst3145-cw2-backend.herokuapp.com/collection/orders', {
+                method: 'POST', // set the HTTP method as 'POST'
+                headers: {
+                    'Content-Type': 'application/json', // set the data type as JSON
+                },
+                body: JSON.stringify({ name: checkOutName, phone: checkOutNumber, lessons: this.cartItems }), // need to stringify the JSON object
+            })
+                .then(response => response.json())
+                .then(responseJSON => {
+                    console.log('Success:', responseJSON);
+                });
+
+            for (let index = 0; index < this.cartItems.length; index++) {
+                const lesson = this.cartItems[index].lesson;
+                fetch(`https://cst3145-cw2-backend.herokuapp.com/collection/lessons/${lesson._id}`, {
+                    method: 'PUT', // set the HTTP method as 'POST'
+                    headers: {
+                        'Content-Type': 'application/json', // set the data type as JSON
+                    },
+                    body: JSON.stringify({ space: lesson.space}), // need to stringify the JSON object
+                })
+                    .then(response => response.json())
+                    .then(responseJSON => {
+                        console.log('Success:', responseJSON);
+                    });
+            }
+            // alert("Check out successful\nYour order has been submitted");
+            this.showProduct = true;
+            this.cartItems = [];
+            this.$swal({
+                title: "Check out successful",
+                text: "Your order has been submitted",
+                icon: "success",
+            });
+            
         },
         fetchLesson: function (_id) {
             const lessonIndex = this.lessons.findIndex(lesson => lesson._id === _id);

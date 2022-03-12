@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <button v-bind:disabled="cannotCheckOut" v-on:click="checkOut" type="button" class="btn checkout-btn btn-info">Check Out</button>
+                                    <button v-bind:disabled="cannotCheckOut" v-on:click="checkOut(checkOutName, checkOutNumber)" type="button" class="btn checkout-btn btn-info">Check Out</button>
                                 </div>
                            
                         </div>
@@ -74,41 +74,8 @@ export default {
                 this.cannotCheckOut = true;
             }
         },
-        checkOut: function () {
-            fetch('https://cst3145-cw2-backend.herokuapp.com/collection/orders', {
-                method: 'POST', // set the HTTP method as 'POST'
-                headers: {
-                    'Content-Type': 'application/json', // set the data type as JSON
-                },
-                body: JSON.stringify({ name: this.checkOutName, phone: this.checkOutNumber, lessons: this.cartItems }), // need to stringify the JSON object
-            })
-                .then(response => response.json())
-                .then(responseJSON => {
-                    console.log('Success:', responseJSON);
-                });
-
-            for (let index = 0; index < this.cartItems.length; index++) {
-                const lesson = this.cartItems[index].lesson;
-                fetch(`https://cst3145-cw2-backend.herokuapp.com/collection/lessons/${lesson._id}`, {
-                    method: 'PUT', // set the HTTP method as 'POST'
-                    headers: {
-                        'Content-Type': 'application/json', // set the data type as JSON
-                    },
-                    body: JSON.stringify({ space: lesson.space}), // need to stringify the JSON object
-                })
-                    .then(response => response.json())
-                    .then(responseJSON => {
-                        console.log('Success:', responseJSON);
-                    });
-            }
-
-            this.$swal({
-                title: "Check out successful",
-                text: "Your order has been submitted",
-                icon: "success",
-            });
-            this.showProduct = true;
-            this.cartItems = [];
+        checkOut: function (checkOutName, checkOutNumber) {   
+             this.$emit('checkOut',checkOutName, checkOutNumber);
         }
     }
 }
