@@ -33,7 +33,7 @@
         </section>
 
         <section v-if="showProduct" id="product">
-            <Lessons :lessons="lessons" v-on:addLessonToCart="addLessonToCart"></Lessons>
+            <Lessons :lessons="lessons" v-on:addLesson="addLessonToCart"></Lessons>
         </section>
 
         <section v-else id="check-out">

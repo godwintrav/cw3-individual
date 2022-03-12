@@ -36,7 +36,7 @@
                                                 style="width: 100px; height: 100px; margin-top: 20px">
                                         </div>
                                     </div>
-                                    <button v-bind:disabled="(lesson.space <= 0)" v-on:click="addLessonToCart(lesson._id, lesson)" type="button" class="btn btn-1 btn-info" style="width: 100%">Add to
+                                    <button v-bind:disabled="(lesson.space <= 0)" v-on:click="addLesson(lesson._id, lesson)" type="button" class="btn btn-1 btn-info" style="width: 100%">Add to
                                         Cart</button>
                                 </div>
                             </div>
@@ -61,8 +61,8 @@ export default {
     name: 'Lessons',
     props: ['lessons'],
     methods: {
-        addLessonToCart: function (lessonID, lesson) {
-             this.$emit('addLessonToCart', lessonID, lesson);
+        addLesson: function (lessonID, lesson) {
+             this.$emit('addLesson', lessonID, lesson);
         },
     },
     data() {
