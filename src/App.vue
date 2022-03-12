@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Home | Store</p>
+                        <p>Home | Stor</p>
                     </div>
                 </div>
             </div>
