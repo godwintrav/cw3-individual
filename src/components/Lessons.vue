@@ -85,13 +85,13 @@ export default {
     computed: {
         sortedLessons() {
             function compareSubjectAsc(a, b) {
-                if (a.subject > b.subject) return 1;
-                if (a.subject < b.subject) return -1;
+                if (a.topic > b.topic) return 1;
+                if (a.topic < b.topic) return -1;
                 return 0;
             }
             function compareSubjectDesc(a, b) {
-                if (a.subject > b.subject) return -1;
-                if (a.subject < b.subject) return 1;
+                if (a.topic > b.topic) return -1;
+                if (a.topic < b.topic) return 1;
                 return 0;
             }
 
